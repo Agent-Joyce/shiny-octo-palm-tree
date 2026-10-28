@@ -62,6 +62,8 @@ body{background:var(--frame);color:var(--ink);font-family:var(--body);overflow:h
 .ctrl button{font:600 15px var(--display);background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:10px;padding:7px 14px;cursor:pointer}
 .ctrl button:hover{background:rgba(255,255,255,.22)}
 .ctrl button.on{background:var(--sun);color:var(--ink)}
+.secs{align-self:center;font:500 14px var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.secs b{font-size:17px;color:var(--sun)}
 button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 
 /* props */
@@ -98,7 +100,7 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .screen .views b{display:block;font-size:20px;color:var(--sun);font-variant-numeric:tabular-nums}
 
 .mroom{border:4px solid #7fa6c9;background:rgba(190,225,250,.45);border-radius:6px}
-.mroom .sign{position:absolute;left:50%;top:10px;transform:translateX(-50%);background:var(--coral);color:#fff;font:600 14px var(--display);padding:4px 10px;border-radius:6px;white-space:nowrap}
+.mroom .sign{position:absolute;left:50%;top:10px;transform:translateX(-50%);background:var(--coral);color:#fff;font:600 14px var(--display);padding:4px 10px;border-radius:6px;white-space:nowrap;text-align:center;line-height:1.2}
 .mroom .tbl{position:absolute;left:60px;top:70px;width:130px;height:56px;background:#fff;border:3px solid var(--desk-edge);border-radius:28px}
 .mroom .door{position:absolute;left:96px;bottom:-4px;width:60px;height:6px;background:var(--carpet)}
 
@@ -163,6 +165,13 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .tv .baby .bh::after{content:"";position:absolute;left:9px;top:15px;width:16px;height:4px;border-top:3px solid var(--ink);border-radius:50%}
 .tv.on .kaye .bob{animation:wave .5s ease-in-out infinite alternate}
 @keyframes wave{to{transform:rotate(-6deg) translateY(-3px)}}
+.tv:not(.onair) .kaye,.tv:not(.onair) .baby,.tv:not(.onair) .live{display:none}
+.tv.onair .offair{display:none}
+.tv .offair{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 26px var(--display);letter-spacing:.12em;color:#6f7d95}
+.tv .offair small{font:500 14px var(--display);letter-spacing:.04em;margin-top:4px}
+.callout{position:absolute;z-index:2100;max-width:260px;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:8px 14px;box-shadow:5px 5px 0 var(--ink);animation:cardIn .45s cubic-bezier(.2,1.5,.4,1)}
+.callout b{display:block;font:700 21px var(--display)}
+.callout span{font-size:15px;line-height:1.3}
 
 .sgdesk{background:var(--desk);border:3px solid var(--desk-edge);border-radius:12px}
 .sgdesk .mon{position:absolute;left:24px;top:12px;width:80px;height:52px;background:var(--navy);border-radius:5px}
@@ -219,11 +228,12 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 @keyframes step{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
 .shadow{position:absolute;left:12px;bottom:-4px;width:36px;height:8px;border-radius:50%;background:rgba(31,36,51,.18)}
 .tag{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:4px;white-space:nowrap;font:600 13px var(--display);color:#fff;background:var(--navy);padding:1px 8px;border-radius:999px}
-.av.focus .tag{background:var(--coral)}
+.av.focus .tag{background:var(--coral);box-shadow:0 0 0 2px #f5b700}
+.av.focus .fig{filter:drop-shadow(2.5px 0 0 #f5b700) drop-shadow(-2.5px 0 0 #f5b700) drop-shadow(0 2.5px 0 #f5b700) drop-shadow(0 -2.5px 0 #f5b700) drop-shadow(0 0 10px rgba(255,201,60,.85))}
 #bubbles{position:absolute;inset:0;pointer-events:none;z-index:1900}
-.bw{position:absolute;left:0;top:0;opacity:0;transition:opacity .7s ease}
+.bw{position:absolute;left:0;top:0;opacity:0;transition:opacity 1.4s ease}
 .bw.show{opacity:1}
-.stem{position:absolute;left:0;top:0;height:2.5px;background:var(--ink);transform-origin:0 50%;opacity:0;transition:opacity .7s ease;border-radius:2px}
+.stem{position:absolute;left:0;top:0;height:2.5px;background:var(--ink);transform-origin:0 50%;opacity:0;transition:opacity 1.4s ease;border-radius:2px}
 .stem.show{opacity:1}
 .bw.show.dim,.stem.show.dim{opacity:.35}
 .bubble{background:var(--paper);border:2.5px solid var(--ink);border-radius:14px;padding:5px 11px;font:500 15px var(--display);white-space:nowrap;animation:pop .8s cubic-bezier(.2,1.2,.4,1)}
@@ -257,7 +267,7 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 .banner{position:absolute;left:50%;top:100px;transform:translateX(-50%);z-index:2000;background:var(--coral);color:#fff;border:4px solid var(--ink);border-radius:14px;padding:12px 26px;text-align:center;box-shadow:8px 8px 0 var(--ink);animation:cardIn .5s cubic-bezier(.2,1.5,.4,1);white-space:nowrap}
 .banner b{display:block;font:700 30px var(--display)}
 .banner span{font:500 17px var(--display)}
-.title-card{left:50%;margin-left:-380px;width:760px;top:200px;text-align:center}
+.title-card{left:50%;margin-left:-380px;width:760px;top:200px;text-align:center;cursor:pointer}
 .title-card h1{font:700 86px/1 var(--display);margin:8px 0 10px}
 .title-card p{font:500 24px var(--display);margin:0;color:var(--muted)}
 .title-card .hint{margin-top:22px;display:inline-block;background:var(--navy);color:#fff;font:600 16px var(--display);padding:8px 16px;border-radius:999px}
@@ -282,16 +292,19 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
     <canvas id="conf" width="1600" height="900"></canvas>
 
     <div class="hud-top">
-      <div class="brand">AO Market Risk Reporting<small>Year-End 2026 · Manila ⇄ Singapore</small></div>
+      <div class="brand">Market Risk Reporting<small>Year-End 2026 · Manila ⇄ Singapore</small></div>
       <div class="scene-label" id="sceneLabel">Welcome</div>
     </div>
     <div class="hud-bot">
       <div class="dots" id="dots"></div>
-      <div class="ticker"><span><b>FLOOR NEWS</b> · MR-3 still booked, nobody knows by whom · Pantry gossip index at an all-time high · Kaye's baby girl joins the team (non-reporting role) · Vince's dashboard spotted on yet another screen · Noel confirms this ticker complies with policy · Collin still waiting for someone to tell him the chismis · Jorge has another idea ·</span></div>
+      <div class="ticker"><span><b>FLOOR NEWS</b> · BGC Meeting Room still booked, nobody knows by whom · Pantry gossip index at an all-time high · Kaye's baby girl joins the team (non-reporting role) · Vince's dashboard spotted on yet another screen · Noel confirms this ticker complies with policy · Collin still waiting for someone to tell him the chismis · Jorge has another idea ·</span></div>
       <div class="ctrl">
         <button id="prev" type="button">◀ Back</button>
         <button id="next" type="button">Next ▶</button>
         <button id="auto" type="button" class="on">Auto: on</button>
+        <button id="slower" type="button" aria-label="Fewer seconds per page">−</button>
+        <span class="secs"><b id="secs">7</b>s per page</span>
+        <button id="faster" type="button" aria-label="More seconds per page">+</button>
       </div>
     </div>
   </div>
@@ -315,31 +328,32 @@ const PEOPLE = {
   kaye:    {name:"Kaye",    shirt:"#f48fb1", hair:"long",     hairColor:"#2b1c12", skin:"#e1b089", photo:""}
 };
 
-const CHATTER = ["Psst… did you hear?","Chika time!","Marites mode: ON","Kape muna?","Who booked MR-3 AGAIN?","Wait, I have an update…","Is the report out yet?","Merienda na?","OMG really?!","Shh, Ginesse is coming","Okay but listen…","Hahaha totoo!","Lunch na?","No way!","Same, same"];
+const CHATTER = ["Psst… did you hear?","Chika time!","Marites mode: ON","Kape muna?","Who booked the BGC room AGAIN?","Wait, I have an update…","Is the report out yet?","Merienda na?","OMG really?!","Shh, Ginesse is coming","Okay but listen…","Hahaha totoo!","Lunch na?","No way!","Same, same"];
 const LINES = {
   collin:["Hello? Anyone there?","Can someone send me the chismis?","Lunch for one. Again.","Is Manila talking about me?"],
-  ginesse:["Have you eaten?","Bring a jacket, it's cold","Okay team, focus… after this story"],
+  ginesse:["Have you eaten?","Bring a jacket, it's cold","Feeds issue? Send it my way","Okay team, focus… after this story"],
   dia:["Equities question? Come.","Stress, credit OR equities?"],
   noel:["Is that in the procedure?","Per policy section 4.2…"],
   roselle:["Sub Celebrate()","Team event on Friday!","I can automate that"],
   jen:["Severe but plausible, right?","Let me do a quick session"],
-  jorge:["Okay I have an idea…","Knock knock!","What if we…"],
+  jorge:["Okay I have an idea…","Knock knock!","What if we…","LC question? Easy."],
   vince:["Tried this new AI thing?","Another fan message lol"],
-  joshua:["GOOD MORNING TEAM!!","GUYS. GUYS. GUYS.","I'M NOT EVEN SHOUTING","HAVE YOU HEARD?!"],
-  cams:["Rerunning the backtest…","One more exception…"]
+  joshua:["So anyway, as I was saying…","Wait, one more story","Lunch, anyone? Anyone?","Okay, last one, promise"],
+  cams:["Rerunning the backtest…","One more exception…"],
+  kaye:["Baby kicked!","Lunch? I'm eating for two","Did I miss anything?"]
 };
 
 /* ============ STORY / SCENES ============ */
 const SOLO = {
-  collin:{spot:[1400,470], prop:"sgdesk", say:"Dashboard's up. Global.", ws:"Singapore reporting · team of one",
+  collin:{spot:[1400,470], prop:"sgdesk", say:"Dashboard's up. Global.", ws:"Singapore reporting · LE squad",
     title:"The One-Man Singapore Office",
     win:"Ran the whole Singapore reporting portfolio on his own, then built a Global dashboard that other teams now lean on.",
     stats:[["Solo-mode stamina",98],["Gossip received (2,400 km delay)",14],["Dashboard fans",88]],
     foot:"Fun fact: wins every 'who's in the office today' poll in Singapore."},
-  ginesse:{spot:[230,440], prop:"drawer", say:"Have you eaten?", ws:"Legal entity reporting lead · Manila",
+  ginesse:{spot:[230,440], prop:"drawer", say:"Have you eaten?", ws:"Legal entity reporting lead · global projects coordinator",
     title:"Mother of the Floor",
-    win:"Led legal entity reporting all year and kept the Manila team steady, looked after and pointed in the right direction.",
-    stats:[["\"Have you eaten?\" asked per day",95],["Calm at month-end",90],["Snack drawer stock level",80]],
+    win:"Led legal entity reporting, coordinated our global projects and was the go-to for anything feeds-related, all while keeping the Manila team steady, looked after and pointed in the right direction.",
+    stats:[["\"Have you eaten?\" asked per day",95],["Calm at month-end",90],["Feeds questions answered",96]],
     foot:"First stop for help, snacks and a calm word when month-end gets loud."},
   dia:{spot:[425,265], prop:"ticker", say:"Equities question? Come.", ws:"Workstream lead · stress testing, credit & equities",
     title:"The Equities Oracle",
@@ -373,18 +387,18 @@ const SOLO = {
     foot:"Please book a slot through his assistant (there is no assistant)."},
   jorge:{spot:[1030,795], prop:"idea", say:"Okay I have an idea…", ws:"Rates & FX reporting · Noel's crew",
     title:"Chief Jokes & Ideas Officer",
-    win:"Kept the floor laughing and kept the ideas coming all year, which is how half our improvements got started.",
-    stats:[["Jokes per day",93],["Ideas in the box",90],["Jokes that landed",71]],
+    win:"The team's live spark and our resident LC guru. Kept the floor laughing and the ideas coming all year, which is how half our improvements got started.",
+    stats:[["Jokes per day",93],["LC guru level",98],["Jokes that landed",71]],
     foot:"Idea box status: full. Jorge status: has more."},
-  joshua:{spot:[705,820], prop:"speaker", say:"GOOD MORNING TEAM!!", ws:"Legal entity reporting · Ginesse's crew",
-    title:"Floor Announcer (Unofficial)",
-    win:"Kept the floor lively, loud and fully informed all year. Nobody in Manila has ever had to wonder what Joshua thinks.",
-    stats:[["Volume",99],["Words per minute",96],["Minutes of silence",3]],
-    foot:"Heard in Manila. Occasionally heard in Singapore."},
+  joshua:{spot:[705,820], prop:"speaker", say:"Lunch, anyone? Anyone?", ws:"Legal entity reporting · Ginesse's crew",
+    title:"Chief Chatter Officer",
+    win:"Never short of a story, Joshua kept the floor chatty and fully up to date all year. He also kindly offered to have lunch with the whole team. Nobody took him up on it.",
+    stats:[["Stories per day",96],["Words per minute",94],["Lunch invites accepted",0]],
+    foot:"Joshua, we're sorry. The lunch offer is still open… right?"},
   kaye:{spot:null, prop:"tv", ws:"Rates & FX reporting · Noel's crew",
-    title:"On Leave, Still Winning",
-    win:"Delivered the biggest release of the year: a beautiful baby girl. Congratulations Kaye, we miss you on the floor!",
-    stats:[["Cuteness of new arrival",100],["Hours of sleep",8],["Team excitement",100]],
+    title:"Delivered Twice This Year",
+    win:"Spent most of the year on the floor with us, then in September delivered the biggest release of the year: a beautiful baby girl. Congratulations Kaye, we miss you!",
+    stats:[["Jan–Aug: in the office",100],["Sep onwards: on baby duty",100],["Hours of sleep since",8]],
     foot:"Newest team member. Already outranks all of us.",
     extra:{noel:[310,610], jorge:[330,720]}, extraSay:{noel:"Hi baby!", jorge:"She has your eyes!"}}
 };
@@ -397,10 +411,10 @@ const GROUPS = {
     name:"Rates & FX Squad",
     win:"Ran rates and FX completely by the book, with a joke on every page, and grew the extended family by one baby girl.",
     foot:"Kaye joins via video call. Baby joins as observer."},
-  ginesse:{ids:["ginesse","vince","joshua","cams"], spots:[[915,320],[990,320],[1065,320],[1140,320]], props:["drawer","screen","speaker","rewind","mroom"], side:"l",
+  ginesse:{ids:["collin","ginesse","vince","joshua","cams"], spots:[[1140,320],[1065,320],[990,320],[915,320],[840,320]], props:["drawer","screen","speaker","rewind","mroom","sgdesk"], side:"l",
     name:"Legal Entity Squad",
-    win:"Legal entity reporting, a famous global dashboard and a full backtesting overhaul, all from the loudest corner of Manila.",
-    foot:"Still trying to get into MR-3."},
+    win:"Legal entity reporting across Manila and Singapore, two famous global dashboards and a full backtesting overhaul, all from the chattiest corner of Manila (plus one very quiet desk in Singapore).",
+    foot:"Still trying to get into the BGC Meeting Room."},
   duo:{ids:["vince","collin"], spots:[[1140,500],[1290,500]], props:["screen","sgdesk"], side:"l", link:true,
     name:"The Dashboard Duo",
     win:"Two global dashboards, two countries and one sea in between. Between them, half the bank knows where to look for the numbers.",
@@ -408,13 +422,31 @@ const GROUPS = {
 };
 const SCENES = [
   {type:"title", label:"Welcome"},
+  {type:"tour", label:"Floor tour"},
   {type:"gossip", label:"Pantry o'clock", head:"BREAKING: Pantry Gossip Index hits record high", sub:"Meanwhile in Singapore, Collin is still waiting for the update."},
   {type:"solo", id:"collin"},{type:"solo", id:"ginesse"},{type:"solo", id:"dia"},{type:"solo", id:"noel"},
   {type:"solo", id:"roselle"},{type:"solo", id:"jen"},
-  {type:"gossip", label:"Gossip break", head:"UPDATE: Productivity paused for an urgent chika", sub:"Sources say it was about who booked MR-3."},
+  {type:"gossip", label:"Gossip break", head:"UPDATE: Productivity paused for an urgent chika", sub:"Sources say it was about who booked the BGC Meeting Room."},
   {type:"solo", id:"cams"},{type:"solo", id:"vince"},{type:"solo", id:"jorge"},{type:"solo", id:"joshua"},{type:"solo", id:"kaye"},
   {type:"group", id:"dia"},{type:"group", id:"noel"},{type:"group", id:"ginesse"},{type:"group", id:"duo"},
   {type:"final", label:"The whole team"}
+];
+
+const KAYE_I = SCENES.findIndex(s=>s.type==="solo"&&s.id==="kaye");
+const TOUR = [
+  ["pantry",60,285,"Pantry","Gossip HQ. All news breaks here first."],
+  ["ticker",300,195,"Dia's board","Stress testing, credit and equities"],
+  ["shelf",520,195,"Noel's policy shelf","Vol. 1–47. All memorised."],
+  ["screen",700,195,"Vince's global dashboard","The users counter never stops"],
+  ["mroom",900,280,"BGC Meeting Room","Booked all year. Nobody knows by whom."],
+  ["drawer",195,330,"Ginesse's drawer","Snacks, help and feeds fixes"],
+  ["gauge",1000,350,"Jen's stress-o-meter","Severe but plausible"],
+  ["rewind",1010,515,"Backtest-o-matic","Cams' second home"],
+  ["idea",990,700,"Jorge's idea box","Full. He has more."],
+  ["funhq",550,680,"Fun Committee HQ","Roselle's macros and team events"],
+  ["speaker",770,690,"Joshua's chat-o-meter","Measured in stories per minute"],
+  ["tv",285,600,"The TV","Off air for now. Stay tuned."],
+  ["sgdesk",1290,420,"Collin's desk, Singapore","The entire SG office. Population: 1."]
 ];
 
 /* ============ BUILD THE FLOOR ============ */
@@ -423,7 +455,7 @@ const PROPS = [
   ["ticker",340,100,180,70,`<div class="row">EQ ▲ · STRESS ✓ · CREDIT ✓ · EQ ▲ · STRESS ✓</div><div class="row row2">Dia's desk: equities questions welcome</div><div class="lbl" style="bottom:-26px">Dia's board</div>`],
   ["shelf",545,100,160,72,`<i style="background:#e85d4a;height:80%"></i><i style="background:#ffc93c;height:95%"></i><i style="background:#4fbf9f;height:70%"></i><i style="background:#3f8fd2;height:88%"></i><i style="background:#fff;height:76%"></i><i style="background:#c86fb0;height:92%"></i><i style="background:#ff9f43;height:66%"></i><i style="background:#7d5fd6;height:85%"></i><i style="background:#e85d4a;height:74%"></i><div class="lbl" style="bottom:-26px">Policies, Vol. 1–47</div>`],
   ["screen",728,96,155,82,`<div class="bars"><i style="height:30%"></i><i style="height:55%"></i><i style="height:42%"></i><i style="height:78%"></i><i style="height:100%"></i></div><div class="views">USERS<b id="views">12,480</b></div><div class="lbl" style="bottom:-26px">Global dashboard</div>`],
-  ["mroom",905,96,250,170,`<div class="sign">MR-3 · BOOKED (all year)</div><div class="tbl"></div><div class="door"></div>`],
+  ["mroom",905,96,250,170,`<div class="sign">BGC Meeting Room<br>BOOKED (all year)</div><div class="tbl"></div><div class="door"></div>`],
   ["drawer",40,330,140,110,`<div class="d d1" style="top:14px"></div><div class="d" style="top:52px"></div><div class="lbl">Ginesse's drawer</div>`],
   ["pod",330,315,210,100,`<i style="left:16px"></i><i style="left:82px"></i><i style="left:148px"></i><u style="left:16px"></u><u style="left:82px"></u><u style="left:148px"></u>`],
   ["pod",585,315,210,100,`<i style="left:16px"></i><i style="left:82px"></i><i style="left:148px"></i><u style="left:16px"></u><u style="left:82px"></u><u style="left:148px"></u>`],
@@ -433,8 +465,8 @@ const PROPS = [
   ["rewind",850,500,150,105,`<div class="wheel w1"></div><div class="wheel w2"></div><div class="txt">BACKTEST-O-MATIC</div>`],
   ["idea",860,680,120,105,`<div class="bulb"></div><div class="base"></div><div class="slot"></div><div class="lbl">Idea box (full)</div>`],
   ["funhq",330,665,210,100,`<div class="bunting"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="laptop">Sub Party()<br>  Fun = True<br>End Sub</div><div class="cake"></div><div class="lbl">Fun Committee HQ</div>`],
-  ["speaker",600,670,150,100,`<div class="top">VOLUME</div><div class="meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lbl">Noise meter</div>`],
-  ["tv",40,565,230,160,`<div class="scene"></div><div class="live">LIVE · from mat leave</div><div class="kaye" id="tvKaye"></div><div class="baby"><div class="bh"></div></div><div class="lbl" style="bottom:-30px">Kaye's channel</div>`],
+  ["speaker",600,670,150,100,`<div class="top">WORDS / MIN</div><div class="meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lbl">Chat-o-meter</div>`],
+  ["tv",40,565,230,160,`<div class="scene"></div><div class="offair">OFF AIR<small>Stay tuned</small></div><div class="live">LIVE · from mat leave</div><div class="kaye" id="tvKaye"></div><div class="baby"><div class="bh"></div></div><div class="lbl" style="bottom:-30px">Kaye's channel</div>`],
   ["sgdesk",1300,300,230,100,`<div class="mon"><div class="globe"></div></div><div class="plant"></div><div class="lbl">Collin's desk</div>`]
 ];
 const propEls = {};
@@ -462,7 +494,6 @@ const cast = document.getElementById("cast");
 const bubLayer = document.getElementById("bubbles");
 const avs = {};
 Object.entries(PEOPLE).forEach(([id,p])=>{
-  if(id==="kaye") return;
   const el=document.createElement("div");
   el.className="av"; el.dataset.id=id;
   el.innerHTML=avatarHTML(p)+`<div class="tag">${p.name}</div>`;
@@ -531,6 +562,7 @@ function separate(dt){
   const L=Object.values(avs);
   for(let i=0;i<L.length;i++) for(let j=i+1;j<L.length;j++){
     const a=L[i], b=L[j];
+    if(a.away||b.away) continue;
     let dx=b.x-a.x, dy=b.y-a.y;
     const d=Math.hypot(dx/74,dy/50);
     if(d>=1) continue;
@@ -548,7 +580,7 @@ function layoutBubbles(dt,t){
   const spot=stage.classList.contains("spot");
   const L=Object.values(avs);
   const live=L.filter(a=>a.talking).sort((p,q)=>q.y-p.y);
-  const bodies=L.map(a=>({l:a.x-32,r:a.x+32,t:a.y-100,b:a.y+22}));
+  const bodies=L.filter(a=>!a.away).map(a=>({l:a.x-32,r:a.x+32,t:a.y-100,b:a.y+22}));
   const placed=[];
   const k=1-Math.exp(-dt*2.2);
   for(const a of live){
@@ -580,9 +612,10 @@ requestAnimationFrame(frame);
 function bubbleCap(){ return SCENES[state.i].type==="gossip"?6:(state.focus.length?2:4); }
 function say(id,text,ms=4500,force=true){
   const a=avs[id]; if(!a) return;
+  ms=Math.max(ms,2500)*1.6;
   if(!force && Object.values(avs).filter(x=>x.talking).length>=bubbleCap()) return;
   const fresh=!a.talking;
-  a.bub.textContent=text; a.bub.className="bubble"+(id==="joshua"?" loud":"");
+  a.bub.textContent=text; a.bub.className="bubble";
   a.bwW=a.bw.offsetWidth; a.bwH=a.bw.offsetHeight;
   if(fresh){ a.bx=a.x-a.bwW/2; a.by=a.y-112-a.bwH; }
   a.talking=true;
@@ -590,12 +623,12 @@ function say(id,text,ms=4500,force=true){
   clearTimeout(a.bubbleT);
   a.bubbleT=setTimeout(()=>{
     a.bw.classList.remove("show"); a.stem.classList.remove("show"); a.el.classList.remove("talk");
-    a.bubbleT=setTimeout(()=>{a.talking=false;},700);
+    a.bubbleT=setTimeout(()=>{a.talking=false;},1400);
   },ms);
 }
 let chatterRate=3000, chatterT;
 function chatterLoop(){
-  const pool = state.focus.length ? floorIds.filter(i=>!state.focus.includes(i)) : floorIds;
+  const pool = floorIds.filter(i=>!avs[i].away && !state.focus.includes(i));
   const id = pool[Math.floor(Math.random()*pool.length)];
   if(id && !avs[id].talking){
     const own=LINES[id];
@@ -638,6 +671,13 @@ function showCard(html,cls){
 function setOn(list){Object.entries(propEls).forEach(([k,el])=>el.classList.toggle("on",list.includes(k)));}
 function setFocus(ids){state.focus=ids;floorIds.forEach(i=>avs[i].el.classList.toggle("focus",ids.includes(i)));}
 
+function setKayeAway(away){
+  const a=avs.kaye;
+  if(a.away && !away){ a.x=a.tx=300; a.y=a.ty=650; }
+  a.away=away; a.el.hidden=away;
+  if(away){ clearTimeout(a.bubbleT); a.talking=false; a.bw.classList.remove("show"); a.stem.classList.remove("show"); a.el.classList.remove("talk"); }
+  propEls.tv.classList.toggle("onair",away);
+}
 function reset(){
   state.timers.forEach(clearTimeout); state.timers=[]; clearTimeout(autoT);
   overlay.innerHTML=""; stage.classList.remove("spot"); setOn([]); setFocus([]);
@@ -646,9 +686,10 @@ function reset(){
   avs.collin.zone="sg"; avs.collin.el.classList.remove("fly");
   floorIds.forEach(id=>{
     const a=avs[id];
-    if(a.zone==="sg" && a.x<1240){ moveTo(id,1400,500,()=>release(id)); }
+    if(a.zone==="sg" && a.x<1240){ a.el.classList.add("fly"); moveTo(id,1400,500,()=>{a.el.classList.remove("fly");release(id);}); }
     else release(id);
   });
+  setKayeAway(state.i>KAYE_I);
   chatterRate=3000;
 }
 
@@ -659,17 +700,31 @@ function go(i){
   renderDots();
   if(s.type==="title"){
     document.getElementById("sceneLabel").textContent="Welcome";
-    overlay.innerHTML=`<div class="card title-card"><div class="eyebrow">AO Market Risk Reporting · Year-End 2026</div><h1>Life on the Floor</h1><p>11 people. 2 countries. 1 very busy pantry.</p><div class="hint">Press → or Space to start</div></div>`;
+    overlay.innerHTML=`<div class="card title-card"><div class="eyebrow">Market Risk Reporting · Year-End 2026</div><h1>Life on the Floor</h1><p>11 people. 2 countries. 1 very busy pantry.</p><div class="hint">Click, tap or press Enter to start</div></div>`;
     chatterRate=2400;
+  }
+  else if(s.type==="tour"){
+    document.getElementById("sceneLabel").textContent=s.label;
+    stage.classList.add("spot");
+    chatterRate=6000;
+    TOUR.forEach(([p,x,y,t,line],k)=>later(()=>{
+      setOn([p]);
+      overlay.innerHTML=`<div class="callout" style="left:${x}px;top:${y}px"><b>${esc(t)}</b><span>${esc(line)}</span></div>`;
+    },300+k*1500));
+    later(()=>{
+      setOn([]); stage.classList.remove("spot");
+      overlay.innerHTML=`<div class="banner"><b>That's the floor.</b><span>Now let's meet the people on it.</span></div>`;
+      chatterRate=2400; scheduleAuto();
+    },300+TOUR.length*1500);
   }
   else if(s.type==="gossip"){
     document.getElementById("sceneLabel").textContent=s.label;
-    const spots=[[100,335],[185,325],[270,335],[355,325],[140,425],[225,435],[310,425],[395,415],[200,530]];
-    manilaIds.forEach((id,k)=>moveTo(id,spots[k][0],spots[k][1]));
+    const spots=[[100,335],[185,325],[270,335],[355,325],[140,425],[225,435],[310,425],[395,415],[200,530],[290,520]];
+    manilaIds.filter(id=>!avs[id].away).forEach((id,k)=>moveTo(id,spots[k][0],spots[k][1]));
     setOn(["pantry"]);
     later(()=>{scheduleAuto();overlay.innerHTML=`<div class="banner"><b>${esc(s.head)}</b><span>${esc(s.sub)}</span></div>`;},1500);
     later(()=>say("collin","Hello? Anyone? Is there chismis?",3500),2500);
-    later(()=>say("joshua","GUYS. YOU WON'T BELIEVE THIS.",2500),900);
+    later(()=>say("joshua","Okay so you won't believe this…",3500),900);
     chatterRate=1100;
   }
   else if(s.type==="solo"){
@@ -684,9 +739,18 @@ function go(i){
       moveTo(s.id,c.spot[0],c.spot[1],()=>later(once,350));
       later(once,2800);
     }else{
-      setFocus(Object.keys(c.extra||{}));
-      Object.entries(c.extra||{}).forEach(([id,[x,y]])=>moveTo(id,x,y,()=>later(()=>say(id,c.extraSay[id],3500),300)));
-      later(()=>{setOn([c.prop]);later(reveal,600);},300);
+      setFocus(["kaye"]);
+      let left=false;
+      const leave=()=>{ if(left) return; left=true;
+        say("kaye","Baby's coming! See you all!",2200);
+        later(()=>{
+          setKayeAway(true); setOn([c.prop]); setFocus(Object.keys(c.extra||{}));
+          Object.entries(c.extra||{}).forEach(([id,[x,y]])=>moveTo(id,x,y,()=>later(()=>say(id,c.extraSay[id],3500),300)));
+          later(reveal,1800);
+        },3800);
+      };
+      moveTo("kaye",300,650,leave);
+      later(leave,3500);
     }
   }
   else if(s.type==="group"){
@@ -703,8 +767,8 @@ function go(i){
       chatterRate=4000;
     };
     g.ids.forEach((id,k)=>{
-      if(id==="collin"){ avs.collin.zone="sg"; }
-      moveTo(id,g.spots[k][0],g.spots[k][1],()=>{n++; if(n===g.ids.length) later(reveal,300);});
+      if(id==="collin"){ const cross=g.spots[k][0]<1240; avs.collin.zone=cross?"manila":"sg"; avs.collin.el.classList.toggle("fly",cross); }
+      moveTo(id,g.spots[k][0],g.spots[k][1],()=>{ if(id==="collin") avs.collin.el.classList.remove("fly"); n++; if(n===g.ids.length) later(reveal,300);});
     });
     later(reveal,3200);
   }
@@ -721,8 +785,8 @@ function go(i){
     setOn(["tv","pantry"]);
     later(()=>{
       stage.classList.add("spot");
-      showCard(`<div class="eyebrow">Year-End 2026 · Team AO Market Risk Reporting</div><h2>That's a wrap, team.</h2><p class="win">Eleven people across two countries, four workstreams, two global dashboards, one new baby, and enough pantry conversations to fill a regulatory submission. Thank you for a brilliant year.</p>
-      <div class="tiles"><div><b>11</b><span>people</span></div><div><b>2</b><span>countries</span></div><div><b>2</b><span>global dashboards</span></div><div><b>1</b><span>new baby girl</span></div><div><b>0</b><span>times MR-3 was free</span></div><div><b>∞</b><span>pantry updates</span></div></div>
+      showCard(`<div class="eyebrow">Year-End 2026 · Team Market Risk Reporting</div><h2>That's a wrap, team.</h2><p class="win">Eleven people across two countries, four workstreams, two global dashboards, one new baby, and enough pantry conversations to fill a regulatory submission. Thank you for a brilliant year.</p>
+      <div class="tiles"><div><b>11</b><span>people</span></div><div><b>2</b><span>countries</span></div><div><b>2</b><span>global dashboards</span></div><div><b>1</b><span>new baby girl</span></div><div><b>0</b><span>times the BGC room was free</span></div><div><b>∞</b><span>pantry updates</span></div></div>
       <div class="foot">— Joyce</div>`,"c");
       confetti();
       order.forEach((id,k)=>later(()=>say(id,["Cheers!","Happy holidays!","See you in 2027!","Woohoo!","Kampai!"][k%5],3000),k*350));
@@ -738,14 +802,19 @@ SCENES.forEach((s,i)=>{const b=document.createElement("button");b.type="button";
   b.setAttribute("aria-label",b.title); b.onclick=()=>go(i); dots.appendChild(b);});
 function renderDots(){[...dots.children].forEach((b,i)=>{b.className=i<state.i?"done":i===state.i?"cur":"";});}
 
-let auto=true, autoT;
-function scheduleAuto(){clearTimeout(autoT); if(auto && state.i<SCENES.length-1) autoT=setTimeout(()=>go(state.i+1),5000);}
+let auto=true, autoT, autoDelay=7;
+function scheduleAuto(){clearTimeout(autoT); if(auto && state.i>0 && state.i<SCENES.length-1) autoT=setTimeout(()=>go(state.i+1),autoDelay*1000);}
 document.getElementById("next").onclick=()=>go(state.i+1);
 document.getElementById("prev").onclick=()=>go(state.i-1);
 const autoBtn=document.getElementById("auto");
 autoBtn.onclick=()=>{auto=!auto;autoBtn.classList.toggle("on",auto);autoBtn.textContent=auto?"Auto: on":"Auto";scheduleAuto();};
+function setDelay(n){autoDelay=Math.min(20,Math.max(3,n));document.getElementById("secs").textContent=autoDelay;scheduleAuto();}
+document.getElementById("slower").onclick=()=>setDelay(autoDelay-1);
+document.getElementById("faster").onclick=()=>setDelay(autoDelay+1);
+stage.addEventListener("click",e=>{ if(state.i===0 && !e.target.closest("button") && !e.target.closest(".av")) go(1); });
 document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();go(state.i+1);}
+  if(e.target.closest && e.target.closest("button") && (e.key==="Enter"||e.key===" ")) return;
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="Enter"||e.key==="PageDown"){e.preventDefault();go(state.i+1);}
   else if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();go(state.i-1);}
   else if(e.key==="a"||e.key==="A"){autoBtn.click();}
 });
